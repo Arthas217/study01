@@ -19,9 +19,9 @@ public class ScheduleDemo {
     static long count = 0;
 
     public static void main(String[] args) {
-//        threadRunnableMethod();
-//        timerTaskMethod();
-//        threadPoolMethod();
+        threadRunnableMethod();
+        timerTaskMethod();
+        threadPoolMethod();
         quartzJob();
     }
 
@@ -42,7 +42,7 @@ public class ScheduleDemo {
     }
 
 
-    private static void timerTaskMethod(){
+    private static void timerTaskMethod() {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -60,7 +60,7 @@ public class ScheduleDemo {
     }
 
 
-    private static void threadPoolMethod(){
+    private static void threadPoolMethod() {
         Runnable runnable = () -> {
             count++;
             System.out.println(count);
@@ -69,11 +69,11 @@ public class ScheduleDemo {
         // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
         threadPool.scheduleAtFixedRate(runnable, 0, 5, TimeUnit.SECONDS);
         // 第三个参数为一次执行终止和下一次执行开始之间的延迟
-        threadPool.scheduleWithFixedDelay(runnable,0,5,TimeUnit.SECONDS);
+        threadPool.scheduleWithFixedDelay(runnable, 0, 5, TimeUnit.SECONDS);
     }
 
 
-    private static void quartzJob(){
+    private static void quartzJob() {
         //1.创建Scheduler的工厂
         SchedulerFactory schedulerFactory = new StdSchedulerFactory();
         //2.从工厂中获取调度器实例
@@ -87,7 +87,7 @@ public class ScheduleDemo {
                     .withIdentity("quartzJobName", "quartzGroup")
                     .build();
             //任务运行的时间，SimpleSchedle类型触发器有效，3秒后启动任务
-            long time=  System.currentTimeMillis() + 3*1000L;
+            long time = System.currentTimeMillis() + 3 * 1000L;
             Date statTime = new Date(time);
             //4.创建Trigger
             //使用SimpleScheduleBuilder或者CronScheduleBuilder
