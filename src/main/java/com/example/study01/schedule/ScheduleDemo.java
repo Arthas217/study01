@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 定时任务例子
+ * 表达式工具
+ * https://tool.lu/crontab/
  */
 public class ScheduleDemo {
 
@@ -19,9 +21,9 @@ public class ScheduleDemo {
     static long count = 0;
 
     public static void main(String[] args) {
-        threadRunnableMethod();
-        timerTaskMethod();
-        threadPoolMethod();
+//        threadRunnableMethod();
+//        timerTaskMethod();
+//        threadPoolMethod();
         quartzJob();
     }
 
@@ -84,7 +86,7 @@ public class ScheduleDemo {
                     //job的描述
                     .withDescription("this is a quartz job")
                     //job的name和group
-                    .withIdentity("quartzJobName", "quartzGroup")
+                    .withIdentity("quartzJobName%%%%%%%%%%%%%%%%%%%%", "quartzGroup$$$$$$$$$$$$$$$$$$$")
                     .build();
             //任务运行的时间，SimpleSchedle类型触发器有效，3秒后启动任务
             long time = System.currentTimeMillis() + 3 * 1000L;
@@ -93,7 +95,7 @@ public class ScheduleDemo {
             //使用SimpleScheduleBuilder或者CronScheduleBuilder
             Trigger t = TriggerBuilder.newTrigger()
                     .withDescription("")
-                    .withIdentity("ramTrigger", "ramTriggerGroup")
+                    .withIdentity("triggerName", "triggerGroup")
                     //.withSchedule(SimpleScheduleBuilder.simpleSchedule())
                     //默认当前时间启动
                     .startAt(statTime)
